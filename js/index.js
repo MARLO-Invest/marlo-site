@@ -16,6 +16,26 @@ var map = new mapboxgl.Map({
 // Add zoom and rotation controls to the map.
 map.addControl(new mapboxgl.NavigationControl());
 
+// Add Geocoder with fly animation
+var geocoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    flyTo: {
+        bearing: 0,
+// These options control the flight curve, making it move
+// slowly and zoom out almost completely before starting
+// to pan.
+        speed: 0.2, // make the flying slow
+        curve: 1, // change the speed at which it zooms out
+// This can be any easing function: it takes a number between
+// 0 and 1 and returns another number between 0 and 1.
+        easing: function(t) {
+            return t;
+        }
+    },
+    mapboxgl: mapboxgl
+});
+map.addControl(geocoder);
+
 // Load points layer once map loads
 map.on('load', () => {
 
