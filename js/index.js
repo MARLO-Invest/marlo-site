@@ -13,9 +13,6 @@ var map = new mapboxgl.Map({
     center: [-97.7718784, 31.0810943] // Killeen, TX
 });
 
-// Add zoom and rotation controls to the map.
-map.addControl(new mapboxgl.NavigationControl());
-
 // Add Geocoder with fly animation
 var geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
@@ -35,6 +32,9 @@ var geocoder = new MapboxGeocoder({
     mapboxgl: mapboxgl
 });
 map.addControl(geocoder);
+
+// Add zoom and rotation controls to the map.
+map.addControl(new mapboxgl.NavigationControl());
 
 // Load points layer once map loads
 map.on('load', () => {
